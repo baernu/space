@@ -12,6 +12,12 @@ module spacenewsfx {
 
 	// FasterXML JSON library
 	requires com.fasterxml.jackson.core;
+	requires com.fasterxml.jackson.databind;
+
 
 	exports ch.bfh.spacenews;
- }
+	exports ch.bfh.spacenews.domain;
+	exports ch.bfh.spacenews.api;
+	exports ch.bfh.spacenews.control;
+
+}

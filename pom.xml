@@ -53,15 +53,14 @@
 	</dependency>
 	<!-- see also: https://github.com/FasterXML/jackson-docs/wiki/Using-Jackson2-with-Maven -->
 	<!-- JUnit -->
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
 	<dependency>
-	  <groupId>org.junit.jupiter</groupId>
-	  <artifactId>junit-jupiter-engine</artifactId>
-	  <version>${junit.jupiter.version}</version>
-	  <scope>test</scope>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20210307</version>
 	</dependency>
-  </dependencies>
 
-  <build>
+	<build>
 	<pluginManagement>
 	  <!-- Use 'mvn versions:display-plugin-updates' to check if newer plugins 
 		   are available -->

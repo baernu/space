@@ -2,7 +2,7 @@
  * Project and Training 2: Space News Controller - Computer Science, Berner Fachhochschule
  */
 
-package ch.bfh.spacenews;
+package ch.bfh.spacenews.control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

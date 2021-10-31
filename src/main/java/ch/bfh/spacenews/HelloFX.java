@@ -3,11 +3,18 @@
  */
 package ch.bfh.spacenews;
 
+import ch.bfh.spacenews.control.NewsController;
+import ch.bfh.spacenews.util.I18n;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
+
+import java.net.URL;
+import java.util.Locale;
 
 /**
  * Dummy application class demonstrating a JavaFX application.
@@ -21,10 +28,10 @@ public class HelloFX extends Application {
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+		/*Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 		stage.setTitle("Space News App");
 		stage.setScene(new Scene(root, 640, 480));
-		stage.show();
+		stage.show();*/
 
 
 		/*final int width = 640;
@@ -35,6 +42,26 @@ public class HelloFX extends Application {
 		Scene scene = new Scene(new StackPane(l), width, height);
 		stage.setScene(scene);
 		stage.show();*/
+
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+//			NewsController newsController = new NewsController();
+//			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"
+//			));
+//			), I18n.getResourceBundle(new Locale("labels","de")));
+//			loader.setController(newsController);
+//			Parent root = loader.load();
+			Scene scene = new Scene(root, 500, 350);
+			URL url = getClass().getClassLoader().getResource("application.css");
+			scene.getStylesheets().add(url.toExternalForm());
+			stage.setOnCloseRequest(e -> {
+				Platform.exit();
+			});
+			stage.setScene(scene);
+			stage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

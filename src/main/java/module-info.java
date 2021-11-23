@@ -14,5 +14,7 @@ module spacenews.messb4 {
         opens spacenews.domain to com.fasterxml.jackson.databind;
         opens spacenews.api to org.apache.httpcomponents.heepclient,javafx.fxml ;
 
+    exports spacenews.gui;
+
 
 }

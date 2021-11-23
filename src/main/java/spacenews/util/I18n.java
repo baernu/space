@@ -1,4 +1,4 @@
-package ch.bfh.spacenews.util;
+package spacenews.util;
 
 import java.text.MessageFormat;
 import java.util.Locale;

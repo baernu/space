@@ -2,7 +2,6 @@ package spacenews.domain;
 
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

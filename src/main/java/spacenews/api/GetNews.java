@@ -16,12 +16,8 @@ import org.apache.http.util.EntityUtils;
 import spacenews.domain.Articles;
 import spacenews.domain.ArticlesDeserializer;
 import spacenews.domain.NewsType;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GetNews {
@@ -44,7 +40,6 @@ public class GetNews {
                 case Report -> request = new HttpGet("https://api.spaceflightnewsapi.net/v3/reports");
             }
 
-
             response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -58,22 +53,16 @@ public class GetNews {
 
         }
         try {
-
-
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             SimpleModule module = new SimpleModule();
             module.addDeserializer(Articles.class, new ArticlesDeserializer());
             objectMapper.registerModule(module);
-
             articles = objectMapper.readValue(input, new TypeReference<List<Articles>>(){});
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public List<Articles> getArticles() {

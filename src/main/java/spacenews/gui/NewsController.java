@@ -11,9 +11,8 @@ import javafx.stage.Stage;
 import spacenews.api.GetNews;
 import spacenews.domain.NewsType;
 import spacenews.util.I18n;
-
 import java.io.IOException;
-import java.util.Locale;
+
 
 public class NewsController {
 

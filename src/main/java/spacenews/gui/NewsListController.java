@@ -19,10 +19,9 @@ import spacenews.api.GetNews;
 import spacenews.domain.Articles;
 import spacenews.domain.Providers;
 import spacenews.util.I18n;
-
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Locale;
+
 
 public class NewsListController {
     private  final GetNews getNews;
@@ -94,7 +93,7 @@ public class NewsListController {
             }
             if (launches != null) {
                 if (launches.getId() != null) {
-                    launchesId = "laungches id: " + launches.getId();
+                    launchesId = "launches id: " + launches.getId();
                     launchesP = "launches provider: " + launches.getProvider();
                     countProvider++;
                 }
@@ -112,7 +111,7 @@ public class NewsListController {
             }
 
 
-        ObservableList<String> items =FXCollections.observableArrayList (
+        ObservableList<String> items = FXCollections.observableArrayList (
                 id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured,
                 launchesId, launchesP, eventsId, eventsP);
             listProperty.set(items);
@@ -145,7 +144,6 @@ public class NewsListController {
 
     @FXML
     void doRefresh(ActionEvent event) {
-        NewsListController.count = 1;
         getNews.load(newsController.getNewsType());
         iterator = getNews.getArticles().iterator();
 

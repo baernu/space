@@ -3,7 +3,6 @@ package spacenews.gui;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.MissingResourceException;
-
 import spacenews.util.I18n;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

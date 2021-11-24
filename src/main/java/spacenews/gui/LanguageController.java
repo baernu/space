@@ -1,14 +1,11 @@
 package spacenews.gui;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import spacenews.util.I18n;
-
 import java.io.IOException;
 import java.util.Locale;
 

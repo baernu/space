@@ -12,8 +12,12 @@ import spacenews.api.GetNews;
 import spacenews.domain.NewsType;
 import spacenews.util.I18n;
 import java.io.IOException;
+import java.util.MissingResourceException;
 
-
+/**
+ * This class is a Controller class and displays the different types of information to choose.
+ * And then starts the NewsListController.
+ */
 public class NewsController {
 
     private final GetNews getNews = new GetNews();
@@ -39,33 +43,65 @@ public class NewsController {
 
 
     @FXML
+    /**
+     * method to exit the actual application
+     */
     void exit(ActionEvent event) {
         ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
-    void goToArticles(ActionEvent event) throws IOException {
-        newsType = NewsType.Article;
-        getNews.load(NewsType.Article);
-        control();
+    /**
+     * method to go to the specific type of message: Articles
+     * Loading the News Articles from the rest api
+     */
+    void goToArticles(ActionEvent event)  {
+        try {
+            newsType = NewsType.Article;
+            getNews.load(NewsType.Article);
+            control();
+        } catch (MissingResourceException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
-    void goToBlogs(ActionEvent event) throws IOException {
-        newsType = NewsType.Blog;
-        getNews.load(NewsType.Blog);
-        control();
+    /**
+     * method to go to the specific type of message: Blogs
+     * Loading the Blogs from the rest api
+     */
+    void goToBlogs(ActionEvent event) {
+        try {
+            newsType = NewsType.Blog;
+            getNews.load(NewsType.Blog);
+            control();
+        } catch (MissingResourceException e) {
+            e.printStackTrace();
+        }
     }
 
 
     @FXML
-    void goToReports(ActionEvent event) throws IOException {
-        newsType = NewsType.Report;
-        getNews.load(NewsType.Report);
-        control();
+    /**
+     * method to go to the specific type of message: Reports
+     * Loading the Reports from the rest api
+     */
+    void goToReports(ActionEvent event)  {
+        try {
+            newsType = NewsType.Report;
+            getNews.load(NewsType.Report);
+            control();
+        } catch (MissingResourceException e) {
+            e.printStackTrace();
+        }
+
     }
 
-
+    /**
+     * method which load the NewsListController with its resource newsView.fxml.
+     * Gives the NewsListController a reference to the loaded news.
+     */
     public void control()  {
 
         try {
@@ -77,11 +113,16 @@ public class NewsController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-        }catch (IOException e) {
+        } catch (MissingResourceException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
+    /**
+     * @return the type of news
+     */
     public NewsType getNewsType() {
         return this.newsType;
     }

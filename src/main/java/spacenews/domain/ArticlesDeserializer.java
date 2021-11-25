@@ -9,17 +9,34 @@ import java.io.IOException;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+/**
+ * Deserializer from jackson which parse the data from the rest api in a way that the constructor of
+ * the Articles class can then generate members.
+ */
 public class ArticlesDeserializer extends StdDeserializer<Articles> {
 
-
+    /**
+     * Default constructor
+     */
     public ArticlesDeserializer() {
         this(null);
     }
 
+    /**
+     * Constructor for the super constructor
+     * @param vc data generated from the deserializer.
+     */
     public ArticlesDeserializer(Class<?> vc) {
         super(vc);
     }
 
+    /**
+     *
+     * @param jp reference to JsonParser
+     * @param ctxt reference to the DeserializationContext
+     * @return the data as a java class. The json data from the rest api has been changed to generate members of
+     * the Articles class.
+     */
       @Override
     public Articles deserialize(JsonParser jp, DeserializationContext ctxt)  {
         try {

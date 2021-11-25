@@ -9,9 +9,15 @@ import spacenews.util.I18n;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * Controller class for the language.
+ */
 public class LanguageController {
 
     @FXML
+    /**
+     * method which sets the language to english
+     */
     void setEnglish(ActionEvent event) {
         Main.setLocale(new Locale("en"));
         run();
@@ -19,11 +25,18 @@ public class LanguageController {
     }
 
     @FXML
+    /**
+     * method which sets the language to german
+     */
     void setGerman(ActionEvent event) {
         Main.setLocale(new Locale("de"));
         run();
     }
 
+    /**
+     * method which load the NewsController with its resource news.fxml. The origin stage from the Main class
+     * show then the application.
+     */
     public void run() {
         try {
             NewsController newsController = new NewsController();

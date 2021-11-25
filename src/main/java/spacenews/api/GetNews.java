@@ -20,13 +20,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class takes the data from a rest api and generates with a deserializer members in
+ * a java class.
+ */
 public class GetNews {
 
     private List<Articles> articles = new ArrayList<>();
 
-
-
-
+    /**
+     * This method make an HTTP Request by a specific server. The Deserializer from
+     * the ArticlesDeseializer class map then this data into a java class. This class
+     * is the Articles class.
+     * @param newsType is an enum which indicate the type of the message
+     */
     public void load(NewsType newsType) {
 
         String input = "";
@@ -65,6 +72,10 @@ public class GetNews {
         }
     }
 
+    /**
+     *
+     * @return the list of articles
+     */
     public List<Articles> getArticles() {
         return this.articles;
     }

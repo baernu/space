@@ -21,8 +21,11 @@ import spacenews.domain.Providers;
 import spacenews.util.I18n;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.MissingResourceException;
 
-
+/**
+ * This class is a Controller class and its display the application in form af a ListView.
+ */
 public class NewsListController {
     private  final GetNews getNews;
     private Iterator<Articles> iterator;
@@ -49,6 +52,9 @@ public class NewsListController {
     private VBox vBox;
 
     @FXML
+    /**
+     * method to initialize fxml. For the first time the nextList() call displays the first ListView
+     */
     public void initialize() throws IOException {
 
         nextList((iterator));
@@ -56,7 +62,12 @@ public class NewsListController {
 
     }
 
-
+    /**
+     * constructor
+     * @param getNews: reference to the data from the rest api
+     * @param newsController: reference to the NewsController
+     * the variable countArticles count the sum of the articles
+     */
     public NewsListController(GetNews getNews, NewsController newsController)  {
 
         this.newsController = newsController;
@@ -70,8 +81,13 @@ public class NewsListController {
     }
 
 
-
-    private void nextList(Iterator<Articles> iterator) throws IOException {
+    /**
+     * method to display the next ListView element of type Articles
+     * @param iterator: Iterator of type Articles
+     *
+     */
+    private void nextList(Iterator<Articles> iterator)  {
+        try {
             String launchesId = null;
             String launchesP = null;
             String eventsId = null;
@@ -87,7 +103,7 @@ public class NewsListController {
             String summary = "summary: " + actualIerator.getSummary();
             String publishedAt = "publishedAt: " + actualIerator.getPublishedAt();
             String updatedAt = "updatedAT: " + actualIerator.getUpdatedAt();
-            String featured = "featured: " +actualIerator.getFeatured();
+            String featured = "featured: " + actualIerator.getFeatured();
             if (actualIerator.getLaunches() != null) {
                 launches = actualIerator.getLaunches();
             }
@@ -111,23 +127,32 @@ public class NewsListController {
             }
 
 
-        ObservableList<String> items = FXCollections.observableArrayList (
+            ObservableList<String> items = FXCollections.observableArrayList(
                 id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured,
                 launchesId, launchesP, eventsId, eventsP);
             listProperty.set(items);
             listView.itemsProperty().bind(listProperty);
 
             countItems = items.size();
+        } catch (MissingResourceException e) {
+            e.printStackTrace();
+        }
 
 
     }
 
     @FXML
+    /**
+     * method to exit the actual application
+     */
     void doExit(ActionEvent event) {
         ((Stage) root1.getScene().getWindow()).close();
     }
 
     @FXML
+    /**
+     * method to go to the home application
+     */
     void doHome(ActionEvent event) {
         ((Stage) root1.getScene().getWindow()).close();
     }
@@ -135,32 +160,59 @@ public class NewsListController {
 
 
     @FXML
-    void doNext(ActionEvent event) throws IOException {
-        if (iterator.hasNext()) {
-            nextList(iterator);
+    /**
+     * method to display the next ViewList
+     */
+    void doNext(ActionEvent event)  {
+        try {
+            if (iterator.hasNext()) {
+                nextList(iterator);
+            }
+        } catch (MissingResourceException e) {
+            e.printStackTrace();
         }
+
 
     }
 
     @FXML
+    /**
+     * method to refresh the data from the rest api
+     */
     void doRefresh(ActionEvent event) {
         getNews.load(newsController.getNewsType());
         iterator = getNews.getArticles().iterator();
 
     }
 
+    /**
+     *
+     * @return the sum value of articles
+     */
     public int getCountArticles() {
         return countArticles;
     }
 
+    /**
+     *
+     * @return the sum value of items in a specific article
+     */
     public int getCountItems() {
         return countItems;
     }
 
+    /**
+     *
+     * @return the sum value of Providers in a specific article
+     */
     public int getCountProvider() {
         return countProvider;
     }
 
+    /**
+     * method to start the StatisticController with its resource statisticsView.fxml.
+     * @param event: action element from javafx
+     */
     @FXML
     void doStatistics(ActionEvent event)  {
         try {
@@ -172,6 +224,8 @@ public class NewsListController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
+        } catch (MissingResourceException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
